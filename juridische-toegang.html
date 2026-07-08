@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juridische toegang tot overheidsdata — Informatieautonomie</title>
+  <meta name="description" content="Amerikaanse wetgeving maakt extraterritoriale toegang tot data mogelijk. Wat FISA, de CLOUD Act en het Five Eyes-netwerk betekenen voor Nederlandse overheidsdata bij Amerikaanse leveranciers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0d1117;
+      color: rgba(255,255,255,0.65);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: rgba(134,239,172,0.75); text-decoration: none; }
+    a:hover { color: rgba(134,239,172,1); text-decoration: underline; }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    header {
+      padding: 32px 0 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 48px;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+    }
+    .back-link:hover { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .back-link svg { width: 14px; height: 14px; }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.6;
+    }
+
+    .content-section {
+      margin-bottom: 64px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .section-label {
+      font-size: 0.68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .block-label {
+      font-size: 0.68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.25);
+      margin: 0 0 8px;
+    }
+    .block-text {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+      margin: 0 0 28px;
+    }
+    .block-text strong { color: rgba(255,255,255,0.82); }
+
+    .instrument-grid {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .instrument-item {
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 6px;
+    }
+    .instrument-name {
+      font-size: 0.82rem; font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 5px;
+    }
+    .instrument-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.6;
+    }
+    .instrument-tag {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 10px;
+      margin-bottom: 8px;
+    }
+    .tag-wet { background: rgba(134,239,172,0.07); color: rgba(134,239,172,0.6); }
+    .tag-variabel { background: rgba(245,158,11,0.07); color: rgba(245,158,11,0.55); }
+
+    .caveat {
+      padding: 14px 18px;
+      background: rgba(245,158,11,0.04);
+      border-left: 2px solid rgba(245,158,11,0.3);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .caveat strong { color: rgba(245,158,11,0.65); }
+
+    .eyes-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+      margin-bottom: 28px;
+    }
+    .eyes-table th {
+      text-align: left;
+      font-size: 0.68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.2);
+      padding: 0 0 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .eyes-table td {
+      padding: 10px 0;
+      color: rgba(255,255,255,0.5);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: top;
+    }
+    .eyes-table td:first-child {
+      color: rgba(255,255,255,0.72);
+      font-weight: 500;
+      width: 140px;
+    }
+    .eyes-table .nl-highlight { color: rgba(134,239,172,0.75); }
+
+    .sources-grid {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .source-item {
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 6px;
+    }
+    .source-item .source-name {
+      font-size: 0.8rem; font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 3px;
+    }
+    .source-item .source-desc {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.55;
+      margin-bottom: 6px;
+    }
+    .source-item .source-link a {
+      font-size: 0.75rem;
+      color: rgba(134,239,172,0.65);
+      word-break: break-all;
+    }
+    .source-item .source-link a:hover { color: rgba(134,239,172,1); }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 32px 0 48px;
+      text-align: center;
+    }
+    .footer-note {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.22);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <a href="kosten.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Terug naar kostenkaart
+    </a>
+    <h1>Juridische toegang tot overheidsdata</h1>
+    <p class="subtitle">Amerikaanse wetgeving verplicht Amerikaanse bedrijven data af te staan — ook als die data buiten de VS is opgeslagen. Wat FISA, de CLOUD Act en het Five Eyes-netwerk betekenen voor Nederlandse overheidsorganisaties die werken met Amerikaanse clouddiensten.</p>
+  </header>
+
+  <!-- ============================================================ -->
+  <!-- 1. DRIE LAGEN                                                 -->
+  <!-- ============================================================ -->
+  <section class="content-section" id="drie-lagen">
+    <p class="section-label">Deel 1 van 2</p>
+    <h2>Drie lagen Amerikaanse bevoegdheid</h2>
+
+    <p class="block-text">
+      Nederlandse overheidsorganisaties slaan steeds meer informatie op bij Amerikaanse technologiebedrijven — Microsoft 365 voor e-mail en documenten, Azure voor clouddiensten, Amazon voor opslag. Wat daarbij zelden wordt benoemd, is de juridische werkelijkheid die daarachter zit.
+    </p>
+
+    <p class="block-label">De instrumenten</p>
+    <div class="instrument-grid">
+      <div class="instrument-item">
+        <span class="instrument-tag tag-wet">Wet — stabiel</span>
+        <p class="instrument-name">FISA — Foreign Intelligence Surveillance Act</p>
+        <p class="instrument-desc">Geeft de NSA en andere inlichtingendiensten het recht communicatie en data te verzamelen van buitenlandse entiteiten en van Amerikaanse burgers in contact met het buitenland. Nederlandse overheidsorganisaties vallen in de categorie buitenlandse entiteiten.</p>
+      </div>
+      <div class="instrument-item">
+        <span class="instrument-tag tag-wet">Wet — stabiel</span>
+        <p class="instrument-name">CLOUD Act (2018) — Clarifying Lawful Overseas Use of Data Act</p>
+        <p class="instrument-desc">Verplicht Amerikaanse bedrijven — Microsoft, Google, Amazon — data te overhandigen aan Amerikaanse rechtshandhaving als die daarom vraagt. De locatie van de servers maakt niet uit. Het bedrijf is Amerikaans, het recht is Amerikaans.</p>
+      </div>
+      <div class="instrument-item">
+        <span class="instrument-tag tag-variabel">Presidentieel besluit — verandert per administratie</span>
+        <p class="instrument-name">Executive Orders</p>
+        <p class="instrument-desc">Presidentiële besluiten kunnen surveillance-bevoegdheden uitbreiden of inperken. Ze wisselen per regering en zijn daardoor minder stabiel dan de twee wetten hierboven. Ze vormen desondanks een actieve derde laag bovenop FISA en de CLOUD Act.</p>
+      </div>
+    </div>
+
+    <div class="caveat">
+      <strong>Schrijfregel voor publicaties:</strong> noem nooit specifieke Executive Order-nummers in gepubliceerde teksten — die verouderen bij elke nieuwe administratie. Gebruik: "US-wetgeving maakt extraterritoriale toegang tot data structureel mogelijk via FISA, de CLOUD Act en presidentiële besluiten."
+    </div>
+
+    <p class="block-label">Concreet</p>
+    <p class="block-text">
+      Een Nederlandse ambtenaar stuurt een e-mail via Microsoft 365. De servers staan in Amsterdam. Maar Microsoft is een Amerikaans bedrijf, en moet die e-mail overhandigen als Washington daarom vraagt via de CLOUD Act. Nederlandse wet heeft daar niets over te zeggen — de verplichting rust op het bedrijf, niet op de server.
+    </p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 2. FIVE EYES                                                  -->
+  <!-- ============================================================ -->
+  <section class="content-section" id="five-eyes">
+    <p class="section-label">Deel 2 van 2</p>
+    <h2>Het inlichtingennetwerk</h2>
+
+    <p class="block-text">
+      Na de Tweede Wereldoorlog bouwden de VS, het VK, Canada, Australië en Nieuw-Zeeland een gezamenlijk inlichtingennetwerk op dat later bekend werd als Five Eyes. De vijf landen delen signaalinformatie: wat de ene dienst onderschept, kan de andere inzien.
+    </p>
+
+    <p class="block-text">
+      Uit documenten die klokkenluider Edward Snowden in 2013 openbaarde, bleek dat meer landen aanhaken in bredere samenwerkingsverbanden.
+    </p>
+
+    <table class="eyes-table">
+      <thead>
+        <tr>
+          <th>Netwerk</th>
+          <th>Leden</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Five Eyes</td>
+          <td>VS, VK, Canada, Australië, Nieuw-Zeeland</td>
+        </tr>
+        <tr>
+          <td>Nine Eyes</td>
+          <td>Five Eyes + Frankrijk, Denemarken, <span class="nl-highlight">Nederland</span>, Noorwegen</td>
+        </tr>
+        <tr>
+          <td>Fourteen Eyes</td>
+          <td>Nine Eyes + België, Duitsland, Italië, Spanje, Zweden</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="caveat">
+      <strong>Epistemische status:</strong> de Nederlandse overheid heeft deelname aan Nine Eyes nooit officieel bevestigd, maar ook nooit ontkend. De informatie is gebaseerd op de Snowden-documenten (2013) en is sindsdien breed gerapporteerd door NRC, Der Spiegel en The Guardian. Gebruik in publicaties als: "Volgens onderzoeksjournalistiek op basis van de Snowden-documenten deelt Nederland inlichtingen binnen het zogeheten Nine Eyes-netwerk."
+    </div>
+
+    <p class="block-label">Wat dit toevoegt aan de twee wetten</p>
+    <p class="block-text">
+      Data die via de CLOUD Act of FISA toegankelijk is voor de NSA, kan via de Five Eyes-structuur zichtbaar worden voor inlichtingendiensten in vier andere landen. Dat geldt ook omgekeerd: de AIVD deelt zelf inlichtingen binnen dit netwerk.<br><br>
+      Dit maakt het argument tweesnijdend. Nederland is potentieel kwetsbaar als data bij Amerikaanse leveranciers belandt, maar is tegelijk deelnemer aan hetzelfde netwerk. In analyses voor de publieke sector is het verstandig deze nuance te benoemen.
+    </p>
+
+    <p class="block-label">Drie lagen tegelijk</p>
+    <p class="block-text">
+      FISA geeft inlichtingendiensten toegang. De CLOUD Act geeft rechtshandhaving toegang. Five Eyes en Nine Eyes betekenen dat wat de VS ziet, gedeeld kan worden met meerdere bondgenoten. Die drie lagen werken gelijktijdig, onafhankelijk van elkaar, en zijn niet zichtbaar in een licentieovereenkomst.
+    </p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- BRONNEN                                                       -->
+  <!-- ============================================================ -->
+  <section class="content-section" id="bronnen">
+    <p class="section-label">Bronnen</p>
+    <h2>Verder lezen</h2>
+
+    <div class="sources-grid">
+      <div class="source-item">
+        <p class="source-name">Privacy International — Five Eyes</p>
+        <p class="source-desc">Overzicht van het Five Eyes-netwerk, het juridische kader en de praktische werking van inlichtingendeling. Doorlopend bijgehouden door Londense privacyorganisatie.</p>
+        <p class="source-link"><a href="https://privacyinternational.org/learn/five-eyes" target="_blank" rel="noopener">privacyinternational.org — Five Eyes</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">Britannica — Five Eyes</p>
+        <p class="source-desc">Encyclopedische beschrijving van de geschiedenis, structuur en werking van het Five Eyes-inlichtingennetwerk.</p>
+        <p class="source-link"><a href="https://www.britannica.com/topic/Five-Eyes" target="_blank" rel="noopener">britannica.com — Five Eyes</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">CLOUD Act — officiële wetgevingstekst (2018)</p>
+        <p class="source-desc">De volledige tekst van de Clarifying Lawful Overseas Use of Data Act, onderdeel van de Consolidated Appropriations Act 2018. Sectie 2523 bevat de extraterritoriale bepalingen.</p>
+        <p class="source-link"><a href="https://www.congress.gov/115/plaws/publ141/PLAW-115publ141.pdf" target="_blank" rel="noopener">congress.gov — CLOUD Act (PDF)</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">EDPB — aanbevelingen 01/2020 over aanvullende maatregelen (Cloud Act)</p>
+        <p class="source-desc">Het European Data Protection Board analyseerde de CLOUD Act in relatie tot GDPR/AVG. Conclusie: de CLOUD Act kan in strijd zijn met Europees recht; aanvullende maatregelen zijn noodzakelijk maar niet altijd toereikend.</p>
+        <p class="source-link"><a href="https://edpb.europa.eu/our-work-tools/our-documents/recommendations/recommendations-012020-measures-supplement-transfer_en" target="_blank" rel="noopener">edpb.europa.eu — aanbevelingen 01/2020</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">Algemene Rekenkamer — Cloud bij het Rijk (2025)</p>
+        <p class="source-desc">Rapport over cloudcontracten van rijksministeries. Bevinding: ministeries weten niet wat het kost om van een leverancier weg te gaan; exitstrategieën ontbreken. Raakt direct aan de afhankelijkheid van Amerikaanse cloudproviders.</p>
+        <p class="source-link"><a href="https://www.rekenkamer.nl/publicaties/rapporten/2025/01/16/cloud-bij-het-rijk" target="_blank" rel="noopener">rekenkamer.nl — Cloud bij het Rijk (2025)</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer-note">Deze pagina beschrijft de juridische dimensie van data-opslag bij Amerikaanse leveranciers. De informatie is gebaseerd op publiek toegankelijke wetgeving en gerapporteerde inlichtingenstructuren. Correcties of aanvullingen zijn welkom via <a href="https://informatieautonomie.nl">informatieautonomie.nl</a>.</p>
+    <a href="kosten.html" class="back-link" style="justify-content:center;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Terug naar kostenkaart
+    </a>
+  </footer>
+</div>
+
+</body>
+</html>

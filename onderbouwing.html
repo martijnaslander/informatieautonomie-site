@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onderbouwing kostenraming — Informatieautonomie</title>
+  <meta name="description" content="Volledige onderbouwing van de €28–52 mrd kostenraming: berekening, methodiek en controleerbare bronnen per kostensoort.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0d1117;
+      color: rgba(255,255,255,0.65);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: rgba(134,239,172,0.75); text-decoration: none; }
+    a:hover { color: rgba(134,239,172,1); text-decoration: underline; }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    header {
+      padding: 32px 0 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 48px;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+    }
+    .back-link:hover { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .back-link svg { width: 14px; height: 14px; }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.6;
+    }
+
+    .toc {
+      margin-bottom: 56px;
+      padding: 20px 24px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+    }
+    .toc-label {
+      font-size: 0.68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.22);
+      margin-bottom: 12px;
+    }
+    .toc ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; }
+    .toc li a {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.45);
+      display: flex; gap: 8px; align-items: baseline;
+    }
+    .toc li a span.amt { color: #f59e0b; font-variant-numeric: tabular-nums; font-weight: 600; flex-shrink: 0; }
+    .toc li a:hover { color: rgba(255,255,255,0.7); text-decoration: none; }
+
+    .cost-section {
+      margin-bottom: 72px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .section-number {
+      font-size: 0.68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: #fff;
+      margin-bottom: 4px;
+    }
+    .section-range {
+      font-size: 1.1rem; font-weight: 700;
+      color: #f59e0b;
+      margin-bottom: 20px;
+    }
+
+    .block-label {
+      font-size: 0.68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.25);
+      margin: 0 0 8px;
+    }
+    .block-text {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+      margin: 0 0 24px;
+    }
+    .block-text strong { color: rgba(255,255,255,0.82); }
+
+    .sources-grid {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .source-item {
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 6px;
+    }
+    .source-item .source-name {
+      font-size: 0.8rem; font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 3px;
+    }
+    .source-item .source-desc {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.55;
+      margin-bottom: 6px;
+    }
+    .source-item .source-link a {
+      font-size: 0.75rem;
+      color: rgba(134,239,172,0.65);
+      word-break: break-all;
+    }
+    .source-item .source-link a:hover { color: rgba(134,239,172,1); }
+
+    .caveat {
+      padding: 12px 16px;
+      background: rgba(245,158,11,0.04);
+      border-left: 2px solid rgba(245,158,11,0.35);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+    .caveat strong { color: rgba(245,158,11,0.7); }
+
+    .confidence {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72rem; font-weight: 600;
+      padding: 3px 10px; border-radius: 12px;
+      margin-bottom: 16px;
+    }
+    .confidence.hard { background: rgba(134,239,172,0.08); color: rgba(134,239,172,0.7); }
+    .confidence.mid { background: rgba(245,158,11,0.08); color: rgba(245,158,11,0.7); }
+    .confidence.est { background: rgba(148,163,184,0.08); color: rgba(148,163,184,0.6); }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 32px 0 48px;
+      text-align: center;
+    }
+    .footer-note {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.22);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <a href="kosten.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Terug naar kostenkaart
+    </a>
+    <h1>Onderbouwing kostenraming</h1>
+    <p class="subtitle">Berekening, methodiek en controleerbare bronnen per kostensoort. De totaalraming van €28–52 mrd/jaar is opgebouwd uit vijf afzonderlijke kostenposten, elk met een eigen methodiek en bewijsbasis.</p>
+  </header>
+
+  <div class="toc">
+    <p class="toc-label">Op deze pagina</p>
+    <ul>
+      <li><a href="#directe-kosten"><span class="amt">€8–13 mrd</span> Directe kosten</a></li>
+      <li><a href="#productiviteit"><span class="amt">€12–22 mrd</span> Productiviteitsverlies</a></li>
+      <li><a href="#faalkosten"><span class="amt">€2–5 mrd</span> Faalkosten</a></li>
+      <li><a href="#ketenkosten"><span class="amt">€3–7 mrd</span> Ketenkosten</a></li>
+      <li><a href="#kennisverlies"><span class="amt">€2–5 mrd</span> Kennisverlies</a></li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 1. DIRECTE KOSTEN                                            -->
+  <!-- ============================================================ -->
+  <section class="cost-section" id="directe-kosten">
+    <p class="section-number">Kostensoort 1 van 5</p>
+    <h2 class="section-title">Directe kosten</h2>
+    <p class="section-range">€8–13 mrd / jaar</p>
+    <span class="confidence hard">Drie gedocumenteerde deelposten + beredeneerde restpost</span>
+
+    <p class="block-label">Definitie</p>
+    <p class="block-text">
+      Directe kosten zijn de daadwerkelijke uitgaven aan ICT: licenties, softwarebeheer, hardware, infrastructuur en ICT-personeel. Dit zijn de kosten die op de begroting staan — los van verspilling, falen of productiviteitverlies.
+    </p>
+
+    <p class="block-label">Rijksoverheid — per organisatie gedocumenteerd</p>
+    <p class="block-text">
+      Voor de rijksoverheid zijn jaarverslagen en Kamerbrieven beschikbaar met organisatie-specifieke ICT-bedragen. De drie grootste:<br><br>
+      <strong>Belastingdienst: €856 mln/jaar (2023)</strong><br>
+      Volledige ICT-organisatiekosten: personeel + licenties + infrastructuur + uitbesteding. 626.000 ICT-dagcapaciteit per jaar. Bron: Kamerbrief staatssecretaris Van Rij, 13 oktober 2023.<br><br>
+      <strong>Nationale Politie: €676 mln/jaar (2023)</strong><br>
+      Post "verbindingen en automatisering" uit jaarverantwoording: afschrijvingen €131,6 mln + hardware €20,7 mln + onderhoud verbindingen €224 mln + overig. Bron: Jaarverantwoording Nationale Politie 2023, sectie 11.5.7.<br><br>
+      <strong>UWV: €238 mln/jaar (2023)</strong><br>
+      "Automatiseringskosten — regulier en projecten", inclusief €16 mln afschrijvingen. Exclusief personeelskosten ICT. Bron: UWV Jaarverslag 2023, deel 2.<br><br>
+      <strong>DUO: ~€76 mln/jaar (2023)</strong><br>
+      Materieel ICT €27,2 mln + externe diensten €48,9 mln. Exclusief ICT-personeel. Bron: rijksfinancien.nl, DUO jaarverslag 2023.<br><br>
+      Deze vier organisaties samen: ~€1,85 mrd/jaar. De overige rijksorganisaties (RWS, RDW, CJIB, Rechtspraak, departementen) brengen het rijkstotaal op het niveau dat de I-strategie Rijk 2024–2028 opgeeft: ~€3,5 mrd/jaar.<br><br>
+      <em>Noot:</em> SSC-ICT (Shared Service Centre ICT Rijk, €373 mln omzet 2023) is een interne leverancier. Deze kosten zitten al in de apparaatskosten van de afnemende ministeries en mogen niet dubbel worden geteld.
+    </p>
+
+    <p class="block-label">Berekening totaal</p>
+    <p class="block-text">
+      <strong>Gemeenten: ~€2,1 mrd/jaar</strong><br>
+      VNG ICT-benchmark: gemiddeld €117/inwoner × 17,9 miljoen inwoners. Gebaseerd op opgave van 200+ gemeenten. Exclusief provincies en waterschappen.<br><br>
+      <strong>Zorg: ~€2–4 mrd/jaar</strong><br>
+      ICT-uitgaven medisch-specialistische zorg, huisartsen, GGZ en verzekeraars (EPD, HIS, declaratiesoftware). Sectordata MXI en NZa. De bandbreedte is breed omdat geen centrale rapportage bestaat — alleen sectorale benchmarks per deelsegment.<br><br>
+      <strong>Restpost (onderwijs, veiligheid, provincies, waterschappen): ~€0,5–1,5 mrd/jaar</strong><br>
+      Schattingsbasis: CBS arbeidsomvang onderwijs (~400K FTE) en veiligheidssector (~115K FTE) × gemiddeld ICT-kostenaandeel vergelijkbaar met gemeenten (~€75/FTE/maand). Minst onderbouwde deelpost; een geaggregeerd overzicht ontbreekt.<br><br>
+      <strong>Optelling:</strong><br>
+      Ondergrens €8 mrd = Rijk €3,5 + Gemeenten €2,1 + Zorg €2 + Restpost €0,5<br>
+      Bovengrens €13 mrd = Rijk €3,5 + Gemeenten €2,1 + Zorg €4 + Restpost €1,5 + niet-gerapporteerde raamcontracten ~€1,5 mrd
+    </p>
+
+    <p class="block-label">Bronnen</p>
+    <div class="sources-grid">
+      <div class="source-item">
+        <p class="source-name">Kamerbrief — ICT-uitgaven Belastingdienst 2023 (€856 mln)</p>
+        <p class="source-desc">Kamerbrief staatssecretaris Van Rij, 13 oktober 2023. Totale ICT-organisatiekosten Belastingdienst: €856 mln, inclusief personeel, licenties, infrastructuur en uitbesteding. 626.000 ICT-dagcapaciteit per jaar.</p>
+        <p class="source-link"><a href="https://www.eerstekamer.nl/bijlage/20240528/jaarrapportage_2023/document3/f=/vmdn9npskmzd.pdf" target="_blank" rel="noopener">eerstekamer.nl — Jaarrapportage Belastingdienst 2023 (PDF)</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">Jaarverantwoording Nationale Politie 2023 (€676 mln)</p>
+        <p class="source-desc">Sectie 11.5.7: post "verbindingen en automatisering". Afschrijvingen €131,6 mln + hardware €20,7 mln + onderhoud verbindingen en automatisering €224 mln + overig.</p>
+        <p class="source-link"><a href="https://www.rijksoverheid.nl/binaries/rijksoverheid/documenten/jaarverslagen/2024/05/15/nationale-politie-2023/jaarverantwoording-politie-2023.pdf" target="_blank" rel="noopener">rijksoverheid.nl — Jaarverantwoording Politie 2023 (PDF)</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">UWV Jaarverslag 2023 (€238 mln)</p>
+        <p class="source-desc">Deel 2, toelichting staat van baten en lasten: "Automatiseringskosten — regulier en projecten" €238 mln, inclusief €16 mln afschrijvingen. Exclusief personeelskosten ICT-afdeling.</p>
+        <p class="source-link"><a href="https://www.eerstekamer.nl/bijlage/20240418/uwv_jaarverslag_2023_deel_2/document3/f=/vmcic1in967g.pdf" target="_blank" rel="noopener">eerstekamer.nl — UWV Jaarverslag 2023 deel 2 (PDF)</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">DUO Jaarverslag 2023 (~€76 mln)</p>
+        <p class="source-desc">Agentschap jaarverslag onderdeel 10.1: materieel ICT €27,2 mln + externe diensten €48,9 mln. Exclusief ICT-personeel. Via rijksfinancien.nl.</p>
+        <p class="source-link"><a href="https://www.rijksfinancien.nl/jaarverslag/2023/VIII/onderdeel/2664563" target="_blank" rel="noopener">rijksfinancien.nl — DUO jaarverslag 2023</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">I-strategie Rijk 2024–2028 (~€3,5 mrd rijksoverheid totaal)</p>
+        <p class="source-desc">Rijksoverheid (Ministerie BZK) — bevat Financieel Overzicht ICT-uitgaven rijksoverheid per departement. Vastgesteld door ministerraad, gepubliceerd april 2024.</p>
+        <p class="source-link"><a href="https://www.rijksoverheid.nl/documenten/rapporten/2024/04/04/i-strategie-rijk-2024-2028" target="_blank" rel="noopener">rijksoverheid.nl — I-strategie Rijk 2024–2028</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">Rapportage Grote ICT-activiteiten 2023 (AcICT)</p>
+        <p class="source-desc">Alle rijksprojecten met ICT-component >€5 mln. Meerjarig totaalbudget lopende projecten: ~€6 mrd. 27% gemiddelde kostenoverschrijding. Dit zijn projectkosten, niet regulier beheer.</p>
+        <p class="source-link"><a href="https://open.overheid.nl/documenten/5efe8b5e-b9fb-49bc-baee-a78d9cd8147b/file" target="_blank" rel="noopener">open.overheid.nl — Rapportage Grote ICT-activiteiten 2023 (PDF)</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">VNG — Gemeentelijke ICT in cijfers</p>
+        <p class="source-desc">Vereniging van Nederlandse Gemeenten — jaarlijkse ICT-benchmark gemeenten: uitgaven per inwoner, investeringsvolume, beheerskosten. Gebaseerd op opgave van 200+ gemeenten.</p>
+        <p class="source-link"><a href="https://vng.nl/artikelen/gemeentelijke-ict-in-cijfers" target="_blank" rel="noopener">vng.nl — Gemeentelijke ICT in cijfers</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">MXI — Medisch-specialistische zorg ICT</p>
+        <p class="source-desc">Sectororganisatie zorgautomatisering. Jaarlijkse rapportage ICT-investering en -beheer in ziekenhuizen en klinieken.</p>
+        <p class="source-link"><a href="https://www.mxi.nl/publicaties" target="_blank" rel="noopener">mxi.nl — publicaties</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">Openbare aanbestedingsdocumenten (TenderNed)</p>
+        <p class="source-desc">Europese aanbestedingen boven de drempelwaarde zijn publiek gepubliceerd. Raamcontracten ICT-inhuur en software zijn traceerbaar per aanbestedende dienst.</p>
+        <p class="source-link"><a href="https://www.tenderned.nl/aankondigingen" target="_blank" rel="noopener">tenderned.nl — aankondigingen</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 2. PRODUCTIVITEITSVERLIES                                     -->
+  <!-- ============================================================ -->
+  <section class="cost-section" id="productiviteit">
+    <p class="section-number">Kostensoort 2 van 5</p>
+    <h2 class="section-title">Productiviteitsverlies</h2>
+    <p class="section-range">€12–22 mrd / jaar</p>
+    <span class="confidence est">Beredeneerde schatting — methodologisch meest betwist</span>
+
+    <div class="caveat">
+      <strong>Belangrijke kanttekening:</strong> dit is de methodologisch zwakste post. Het McKinsey-onderzoek meet tijdverlies voor kenniswerkers in het algemeen, niet specifiek voor de Nederlandse publieke sector. De berekening is een beredeneerde schatting op basis van externe methodiek × Nederlandse arbeidsmarktcijfers. De overige vier kostenposten steunen op harder bewijs.
+    </div>
+
+    <p class="block-label">Berekening</p>
+    <p class="block-text">
+      <strong>Methode:</strong> aantal kenniswerkers × loonkosten per FTE × tijdverliespercentage<br><br>
+      <strong>Aantal FTE:</strong> ~1,05 mln kenniswerkers in de Nederlandse publieke sector. CBS arbeidsmarktstatistieken 2024: overheid (Rijk, gemeenten, provincies) ~500K FTE + onderwijs ~440K FTE + veiligheidsdiensten ~115K FTE. Zorgpersoneel met primaire ICT-interactie (administratief, diagnostisch) is hier niet meegeteld — dat zou het getal aanzienlijk verhogen.<br><br>
+      <strong>Loonkosten per FTE:</strong> ~€75.000/jaar. CBS arbeidskosten overheid en onderwijs (2023): gemiddeld bruto loon + werkgeverslasten uitkomt op €70.000–€78.000 per FTE afhankelijk van sector. Middelpunt €75.000 is hier gehanteerd.<br><br>
+      <strong>Tijdverliespercentage:</strong> 20% (McKinsey Global Institute, 2012). Percentage van werktijd dat kenniswerkers kwijt zijn aan zoeken naar informatie, coördinatie en correctie als gevolg van gefragmenteerde systemen. Dit is het zwakste invoergetal: gemeten voor kenniswerkers in het algemeen in meerdere landen, niet specifiek voor de Nederlandse publieke sector.<br><br>
+      <strong>Uitkomst:</strong> 1.050.000 × €75.000 × 20% = €15,75 mrd middenpunt.<br><br>
+      <strong>Bandbreedte:</strong> 15% tijdverlies → €11,8 mrd (afgerond €12 mrd ondergrens). 25% tijdverlies → €19,7 mrd (afgerond €20 mrd bovengrens). De range van 15–25% is een gevoeligheidsanalyse op het McKinsey-percentage, niet een onafhankelijk gemeten boven- en ondergrens.
+    </p>
+
+    <p class="block-label">Bronnen</p>
+    <div class="sources-grid">
+      <div class="source-item">
+        <p class="source-name">McKinsey Global Institute — The Social Economy (2012)</p>
+        <p class="source-desc">Rapport over de economische waarde van sociale technologieën voor kenniswerkers. Centrale bevinding: kenniswerkers besteden gemiddeld 20% van hun werktijd aan het zoeken naar informatie en communicatie over informatie als gevolg van gefragmenteerde systemen.</p>
+        <p class="source-link"><a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy" target="_blank" rel="noopener">mckinsey.com — The Social Economy (2012)</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">CBS — Arbeidsmarkt overheid en onderwijs 2024</p>
+        <p class="source-desc">Statistieken arbeidsvolume en werkenden in de publieke sector. Grondslag voor de 1,1 mln FTE kenniswerkers in het model.</p>
+        <p class="source-link"><a href="https://www.cbs.nl/nl-nl/visualisaties/arbeidsmarkt-in-cijfers/werkenden/overheid-en-onderwijs" target="_blank" rel="noopener">cbs.nl — Arbeidsmarkt overheid en onderwijs</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 3. FAALKOSTEN                                                 -->
+  <!-- ============================================================ -->
+  <section class="cost-section" id="faalkosten">
+    <p class="section-number">Kostensoort 3 van 5</p>
+    <h2 class="section-title">Faalkosten</h2>
+    <p class="section-range">€2–5 mrd / jaar</p>
+    <span class="confidence hard">Gedocumenteerde deelmetingen + parlementaire bandbreedte</span>
+
+    <p class="block-label">Definitie</p>
+    <p class="block-text">
+      Onder faalkosten verstaan we: (1) projecten die definitief gestopt zijn zonder bruikbaar resultaat, en (2) vastgestelde kostenoverschrijdingen op projecten waarvan de baten de extra kosten aantoonbaar niet dekken. Een project dat duurder uitvalt maar uiteindelijk werkt, telt in beginsel niet mee.
+    </p>
+
+    <p class="block-label">Drie lagen van bewijs</p>
+    <p class="block-text">
+      <strong>1. Jaarlijks gedocumenteerd (AcICT): €1,62 mrd</strong><br>
+      AcICT documenteert in haar jaarrapportage 2024 kostenoverschrijdingen op 184 actief gemonitorde rijksprojecten. Dit is het enige geaggregeerde, publiek geverifieerde jaarcijfer. Het dekt uitsluitend de Rijksoverheid bij projecten boven €5 miljoen.<br><br>
+
+      <strong>2. Individueel gedocumenteerde cases (buiten AcICT-scope, over meerdere jaren):</strong><br>
+      Deze cases zijn geen jaarlijks terugkerend bedrag, maar bewijs dat faalkosten ook buiten het AcICT-toezicht structureel voorkomen. Ze tonen dat de €1,62 mrd een vloer is, geen plafond.<br>
+      — UWV WIA-systeem (2008): €86M besteed, systeem nooit operationeel, gestopt op last van minister Donner.<br>
+      — SVB MRS (2014): €43,7M besteed, AOW/Kinderbijslagsysteem nooit operationeel. Capgemini veroordeeld tot €21M schadevergoeding.<br>
+      — CBR modernisering (2014–2019): €7M begroot, >€34M besteed (5× overschrijding).<br>
+      — Operatie BRP (2013–2017): ~€100M besteed, modernisering GBA gestopt door minister Plasterk zonder bruikbaar resultaat.<br>
+      — Rotterdam — 7 ICT-megaprojecten: €40M boven begroot, slechts 1 van 7 op tijd en budget afgerond.<br><br>
+
+      <strong>3. Parlementaire bandbreedte: €1–5 mrd/jaar</strong><br>
+      Commissie Elias concludeerde in 2014 na parlementair onderzoek dat de jaarlijkse faalkosten van ICT-projecten bij de rijksoverheid liggen tussen €1 en €5 miljard. Dit is de meest gezaghebbende schatting voor de volledige bandbreedte, en hij dekt nog altijd alleen de rijksoverheid.<br><br>
+
+      <strong>Waarom de bovengrens realistisch is:</strong><br>
+      Gemeenten (352), ZBO's (~400), zorginstellingen en onderwijsinstellingen rapporteren niet aan AcICT en worden nergens geaggregeerd. Er bestaat geen nationaal equivalent van AcICT voor deze lagen. De totale publieke ICT-uitgave is naar schatting €8–10 mrd/jaar. Als dezelfde structurele patronen gelden als bij de rijksoverheid — en de individuele cases geven geen reden om dat te betwijfelen — dan is €5 mrd voor de gehele publieke sector een conservatieve bovengrens, niet een overdrijving.
+    </p>
+
+    <p class="block-label">Wat niet gemeten wordt</p>
+    <p class="block-text">
+      Geen enkel orgaan aggregeert ICT-faalkosten voor de volledige publieke sector. Voor gemeenten, ZBO's en de zorg bestaat geen verplichte rapportage. Dit is geen bewijs dat die kosten er niet zijn — het is een registratieprobleem. De €1,62 mrd (AcICT) is aantoonbaar; alles daarboven is gedocumenteerd maar niet geaggregeerd.
+    </p>
+
+    <p class="block-label">Bronnen per laag</p>
+    <div class="sources-grid">
+      <div class="source-item">
+        <p class="source-name">AcICT — jaarverslagen (Laag 1)</p>
+        <p class="source-desc">Jaarverslagen bevatten overzicht van alle getoetste rijksprojecten boven €5M, uitkomsten en kostenoverschrijdingen. Grondslag voor €1,62 mrd gedocumenteerde minimum.</p>
+        <p class="source-link"><a href="https://www.adviescollegeicttoetsing.nl/documenten/jaarverslagen" target="_blank" rel="noopener">adviescollegeicttoetsing.nl — jaarverslagen</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">Binnenlands Bestuur / BIT-rapport UWV WIA (Laag 2)</p>
+        <p class="source-desc">UWV WIA-systeem gestopt 2008 op last van minister Donner. €89,6M besteed, €3,5M herbruikbaar. Noodoplossing achteraf: €40M extra. Nettoverlies: ~€86M.</p>
+        <p class="source-link"><a href="https://www.binnenlandsbestuur.nl" target="_blank" rel="noopener">binnenlandsbestuur.nl</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">Parlementaire Monitor / AanbestedingsCafe — SVB MRS (Laag 2)</p>
+        <p class="source-desc">SVB Multi Regelingen Systeem gestopt 2014. €43,7M verspild. Capgemini veroordeeld tot €21M schadevergoeding. Systeem moest €40 mrd/jaar aan AOW en Kinderbijslag verwerken.</p>
+        <p class="source-link"><a href="https://www.parlementairemonitor.nl" target="_blank" rel="noopener">parlementairemonitor.nl</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">AcICT sept. 2025 — CBR modernisering (Laag 2)</p>
+        <p class="source-desc">CBR ICT-modernisering: €7M begroot, >€34M besteed (5× overschrijding). €27M niet publiek gemeld. AcICT: modernisering krijgt onvoldoende prioriteit.</p>
+        <p class="source-link"><a href="https://www.adviescollegeicttoetsing.nl/documenten/2025/09/09/moderniseren-ict-landschap-cbr" target="_blank" rel="noopener">adviescollegeicttoetsing.nl — CBR rapport</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">AcICT feb. 2026 — UWV 8Vance (Laag 2)</p>
+        <p class="source-desc">UWV AI-matching: €65M contract met 8Vance (micro-bedrijf NL/Roemenië). AcICT: drie jaar vertraging, geen bewijs dat het systeem voldoet. 14 jaar contractduur zonder exitclausules.</p>
+        <p class="source-link"><a href="https://www.computable.nl/2023/03/09/uwv-verrast-met-keuze-8vance-als-matching-tool/" target="_blank" rel="noopener">computable.nl — UWV 8Vance</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">Gemeente.nu / BIT-rapport — Operatie BRP (Laag 3)</p>
+        <p class="source-desc">Modernisering GBA gestopt door minister Plasterk, juli 2017. BIT: 33 maanden vertraging, €50M extra nodig. Totaal besteed: ~€100M zonder bruikbaar resultaat.</p>
+        <p class="source-link"><a href="https://www.gemeente.nu" target="_blank" rel="noopener">gemeente.nu</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">Rekenkamer Rotterdam — 'Foutmelding in beeld' (Laag 3)</p>
+        <p class="source-desc">7 ICT-megaprojecten geanalyseerd. ICT-budget 2007: €76M, 2008: €86M. €40M extra bovenop begroot budget. Slechts 1 van 7 projecten binnen tijd en budget afgerond.</p>
+        <p class="source-link"><a href="https://rekenkamer.rotterdam.nl" target="_blank" rel="noopener">rekenkamer.rotterdam.nl</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">Commissie Elias — Grip op ICT (2014)</p>
+        <p class="source-desc">Parlementair onderzoek naar ICT-projecten bij de rijksoverheid. Bevinding: 30% slaagt volledig, bij grote projecten (>€7,5M) zelfs maar 7%. Jaarlijkse faalkosten rijksoverheid: €1–5 mrd bandbreedte.</p>
+        <p class="source-link"><a href="https://www.tweedekamer.nl/kamerstukken/commissieverslagen/detail?id=2014A04519&did=2014D38693" target="_blank" rel="noopener">tweedekamer.nl — Commissie Elias eindrapport</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">Flyvbjerg et al. — Power-Law Distribution IT Cost Overruns (JMIS 2022)</p>
+        <p class="source-desc">5.392 IT-projecten. 18% gemiddelde overschrijding; 16% overschrijdt >200%. Power-law verdeling: extreme uitschieters zijn structureel, niet uitzonderlijk. Wetenschappelijke grondslag voor de bovengrens-extrapolatie.</p>
+        <p class="source-link"><a href="https://doi.org/10.1080/07421222.2022.2096544" target="_blank" rel="noopener">doi.org — JMIS 2022</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4. KETENKOSTEN                                               -->
+  <!-- ============================================================ -->
+  <section class="cost-section" id="ketenkosten">
+    <p class="section-number">Kostensoort 4 van 5</p>
+    <h2 class="section-title">Ketenkosten</h2>
+    <p class="section-range">€3–7 mrd / jaar</p>
+    <span class="confidence mid">Gedocumenteerde fricties per keten, schatting op volume — geen geaggregeerd NL-totaal beschikbaar</span>
+
+    <p class="block-label">Definitie</p>
+    <p class="block-text">
+      Ketenkosten zijn de kosten die ontstaan doordat informatiesystemen van verschillende organisaties niet op elkaar aansluiten. Concreet: handmatige overdrachten tussen systemen, dubbele registraties, correctierondes bij afwijzingen, en wachttijden die ontstaan omdat informatie niet automatisch doorgaat. Dit zijn geen systeemkosten — het zijn arbeidskosten veroorzaakt door systeemfragmentatie.
+    </p>
+
+    <p class="block-label">Berekening per keten</p>
+    <p class="block-text">
+      Er bestaat geen centraal gemeten totaal voor NL. De schatting is opgebouwd uit drie ketens waarvoor volume en frictie gedocumenteerd zijn:<br><br>
+      <strong>(1) Zorgketen: ~€1,5–3 mrd/jaar</strong><br>
+      Vektis verwerkt meer dan 1 miljard declaratieregels per jaar. NZa constateert structurele declaratiefrictie: een substantieel deel van de regels wordt afgewezen en vereist handmatige correctie bij zowel zorgaanbieder als verzekeraar. Stel conservatief 5% correctieplichtige regels × gemiddelde verwerkingstijd 15 minuten × arbeidskosten zorgadministratie ~€35/uur: dat levert al ruim €400 mln aan correctiearbeid, exclusief het breder administratielastonderzoek van Intrakoop en VWS.<br><br>
+      <strong>(2) Sociaal domein: ~€0,5–1,5 mrd/jaar</strong><br>
+      "Werken aan uitvoering" (BZK, 2021) documenteert structurele handmatige overdrachten tussen UWV, SVB, Belastingdienst en gemeenten. Elk overdrachtmoment vereist verificatie en correctie. Het rapport beschrijft dit als één van de grootste uitvoeringsknelpunten, maar noemt geen totaalbedrag. De schatting is gebaseerd op ~300.000 trajecten/jaar waarbij gemiddeld 3 overdrachten plaatsvinden à ~€150 handmatige verwerkingstijd.<br><br>
+      <strong>(3) Justitieketen: ~€0,3–0,8 mrd/jaar</strong><br>
+      OM, Rechtspraak, DJI, CJIB en Reclassering werken met onverenigbare zaaksystemen. Handmatige zaaksoverdrachten zijn de norm. Bij de OM-hack (2025) moesten 9.000 zaken handmatig worden bijgehouden — dit was geen uitzondering maar een blootlegging van de bestaande standaardwerkwijze. De ~1,3 miljoen zaken/jaar × gemiddeld 2 handmatige ketenoverdrachten × geschatte €50/overdracht = ~€130 mln structurele bodemwaarde.<br><br>
+      <strong>Optelling:</strong> €2,3–5,3 mrd, afgerond tot €3–7 mrd inclusief niet-gekwantificeerde ketens (onderwijs, belastingketen, vreemdelingenketen).
+    </p>
+
+    <p class="block-label">Bronnen</p>
+    <div class="sources-grid">
+      <div class="source-item">
+        <p class="source-name">Ministerie BZK — Werken aan uitvoering (2021)</p>
+        <p class="source-desc">Probleemanalyse van de uitvoeringsketen van de rijksoverheid. Documenteert structurele knelpunten in informatie-uitwisseling tussen uitvoeringsorganisaties (UWV, SVB, Belastingdienst, gemeenten). Aangeboden aan de Tweede Kamer mei 2021.</p>
+        <p class="source-link"><a href="https://www.rijksoverheid.nl/documenten/rapporten/2021/05/17/werken-aan-uitvoering" target="_blank" rel="noopener">rijksoverheid.nl — Werken aan uitvoering (2021)</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">NZa — Marktscan Medisch-Specialistische Zorg</p>
+        <p class="source-desc">Nederlandse Zorgautoriteit — jaarlijkse marktscan beschrijft declaratieprocessen, frictie, en administratieve lasten in de medisch-specialistische zorgketen. Bevat kwantitatieve gegevens over declaratievolume en afwijzingspercentages.</p>
+        <p class="source-link"><a href="https://www.nza.nl/documenten/rapporten" target="_blank" rel="noopener">nza.nl — rapporten</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">Techzine — Citrix-hack OM: achterstand 9.000 zaken (2025)</p>
+        <p class="source-desc">Verslaggeving over de OM-hack van juli 2025 via Citrix NetScaler. Legt bloot hoe afhankelijk de justitieketen is van handmatige processen als systemen uitvallen. 9.000 strafrechtszaken liepen vertraging op.</p>
+        <p class="source-link"><a href="https://www.techzine.nl/nieuws/security/578074/citrix-hack-om-leidde-tot-achterstand-van-9-000-zaken/" target="_blank" rel="noopener">techzine.nl — Citrix-hack OM: 9.000 zaken vertraagd</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 5. KENNISVERLIES                                             -->
+  <!-- ============================================================ -->
+  <section class="cost-section" id="kennisverlies">
+    <p class="section-number">Kostensoort 5 van 5</p>
+    <h2 class="section-title">Kennisverlies en herstelkosten</h2>
+    <p class="section-range">€2–5 mrd / jaar</p>
+    <span class="confidence mid">Fenomeen gedocumenteerd door WRR en Rekenkamer — totaalbedrag eigen schatting op component-basis</span>
+
+    <p class="block-label">Definitie</p>
+    <p class="block-text">
+      Kennisverlies- en herstelkosten zijn de kosten die ontstaan doordat de overheid kennis over haar eigen systemen heeft uitbesteed en nu opnieuw moet inkopen. Twee vormen: (1) structurele externe inhuur voor taken die voorheen intern werden uitgevoerd, betaald tegen markttarief, en (2) transitiekosten bij leverancierswissel, die oplopen doordat interne kennis ontbreekt om migraties zelfstandig te begeleiden.
+    </p>
+
+    <p class="block-label">Berekening per component</p>
+    <p class="block-text">
+      WRR (2025) en Rekenkamer (2025) documenteren het fenomeen; geen van beide publiceert een totaalbedrag voor de hele overheid. De schatting is daarom eigen, gebaseerd op schaalredenering vanuit gepubliceerde deelcijfers.<br><br>
+      <strong>(1) Externe inhuur als kennisvervanger: ~€1,5–3 mrd/jaar</strong><br>
+      De Belastingdienst heeft een raamovereenkomst ICT-inhuur van maximaal €1,074 mrd over vier jaar (€268 mln/jaar) voor één organisatie. Dit is het best gedocumenteerde voorbeeld. De Belastingdienst is groot maar niet uniek: RWS, DJI, UWV en andere grote uitvoeringsorganisaties hebben vergelijkbare constructies. Het CBS telt ~4.400 vaste IT-medewerkers bij de Belastingdienst; externe inhuur overtreft dit structureel. Conservatieve extrapolatie over de 10 grootste rijksuitvoerders: ~€1,5–2 mrd/jaar externe ICT-inhuur als directe kennisvervanging (niet aanvullende capaciteit).<br><br>
+      <strong>(2) Transitiekosten bij leverancierswissel: ~€0,5–2 mrd/jaar</strong><br>
+      Rekenkamer (2025) stelt expliciet dat ministeries de exitkosten van cloudcontracten niet kennen — ze tekenden contracten zonder exitstrategie. Historische gevallen laten zien dat migratie zonder interne kennis 2–5× duurder uitvalt dan met interne kennis: DUO's migratie van Blueriq liep €19–29 mln extra uit; SVB's MRS-exit kostte tientallen miljoenen aan herstel. Het aantal actieve ICT-contracten bij de rijksoverheid is tientallen per jaar; een gemiddelde exitpremie van €10–20 mln per migratie levert al snel €500 mln–€1 mrd/jaar.<br><br>
+      <strong>Optelling:</strong> €2–5 mrd/jaar. Dit is een grove schatting. De ondergrens is verdedigbaar op basis van de gedocumenteerde deelcijfers; de bovengrens is plausibel op basis van de schaal van uitbesteding maar niet direct meetbaar.
+    </p>
+
+    <p class="block-label">Bronnen</p>
+    <div class="sources-grid">
+      <div class="source-item">
+        <p class="source-name">WRR — Deskundige overheid (2025)</p>
+        <p class="source-desc">Wetenschappelijke Raad voor het Regeringsbeleid — rapport over kennisuitholling bij de Rijksoverheid door jarenlange uitbesteding. Documenteert het verlies van het vermogen om eigen leveranciers kritisch te beoordelen. Gepubliceerd juli 2025.</p>
+        <p class="source-link"><a href="https://www.wrr.nl/publicaties/rapporten/2025/07/03/deskundige-overheid" target="_blank" rel="noopener">wrr.nl — Deskundige overheid (2025)</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">Algemene Rekenkamer — Cloud bij het Rijk (2025)</p>
+        <p class="source-desc">Rapport over cloudcontracten van rijksministeries. Bevinding: ministeries weten niet wat het kost om van een leverancier weg te gaan. Exitstrategieën ontbreken in contracten. Gepubliceerd januari 2025.</p>
+        <p class="source-link"><a href="https://www.rekenkamer.nl/publicaties/rapporten/2025/01/16/cloud-bij-het-rijk" target="_blank" rel="noopener">rekenkamer.nl — Cloud bij het Rijk (2025)</a></p>
+      </div>
+      <div class="source-item">
+        <p class="source-name">iBestuur — Hoe de Belastingdienst een potentieel chokepoint creëerde</p>
+        <p class="source-desc">Analyse van de Belastingdienst-aanbesteding voor het BTW-systeem (Fast Enterprises). Bevat gegevens over het raamcontract ICT-inhuur van €1,074 mrd over vier jaar als illustratie van externe kennisafhankelijkheid.</p>
+        <p class="source-link"><a href="https://ibestuur.nl/markt-en-overheid/inkoop-en-aanbesteding/hoe-de-belastingdienst-een-potentieel-chokepoint-creeerde" target="_blank" rel="noopener">ibestuur.nl — Belastingdienst chokepoint</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer-note">Deze onderbouwing is bedoeld als transparante verantwoording van de kostenraming op de hoofdpagina. De raming is geen accountantsverklaring — het is een gestructureerde schatting op basis van beschikbare sectordata en erkende methodieken. Bronnen zijn publiek toegankelijk en controleerbaar. Signaleer fouten of betere bronnen via <a href="https://informatieautonomie.nl">informatieautonomie.nl</a>.</p>
+    <a href="kosten.html" class="back-link" style="justify-content:center;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Terug naar kostenkaart
+    </a>
+  </footer>
+</div>
+
+</body>
+</html>

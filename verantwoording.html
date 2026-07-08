@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Verantwoording van correcties op informatieautonomie.nl/kosten.html — welke claims zijn aangepast, waarom, en op basis van welke primaire bronnen.">
+  <title>Verantwoording correcties — Informatieautonomie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=2">
+  <style>
+    .vw-header {
+      max-width: 760px;
+      margin: 0 auto 48px;
+      padding: 64px 24px 0;
+    }
+    .vw-terug {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .vw-terug:hover { color: rgba(255,255,255,0.7); }
+    .vw-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      margin: 0 0 16px;
+    }
+    .vw-intro {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+    .vw-meta {
+      margin-top: 20px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
+    }
+    .vw-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .vw-sectie-titel {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.25);
+      margin: 48px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .vw-correctie {
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      border-left: 3px solid rgba(245,158,11,0.4);
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+    .vw-correctie.type-fout {
+      border-left-color: rgba(239,68,68,0.5);
+    }
+    .vw-correctie.type-nuance {
+      border-left-color: rgba(99,102,241,0.5);
+    }
+    .vw-correctie.type-update {
+      border-left-color: rgba(16,185,129,0.5);
+    }
+    .vw-correctie-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .label-fout { color: rgba(239,68,68,0.8); }
+    .label-nuance { color: rgba(99,102,241,0.8); }
+    .label-update { color: rgba(16,185,129,0.8); }
+    .label-schatting { color: rgba(245,158,11,0.8); }
+    .vw-was-wordt {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 10px 0 14px;
+    }
+    @media (max-width: 580px) { .vw-was-wordt { grid-template-columns: 1fr; } }
+    .vw-was, .vw-wordt {
+      padding: 10px 14px;
+      border-radius: 5px;
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+    .vw-was {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.15);
+      color: rgba(255,255,255,0.55);
+    }
+    .vw-wordt {
+      background: rgba(16,185,129,0.07);
+      border: 1px solid rgba(16,185,129,0.15);
+      color: rgba(255,255,255,0.75);
+    }
+    .vw-was-label, .vw-wordt-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    .vw-was-label { color: rgba(239,68,68,0.6); }
+    .vw-wordt-label { color: rgba(16,185,129,0.6); }
+    .vw-bron {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+    .vw-bron strong { color: rgba(255,255,255,0.45); }
+    .vw-werkwijze {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 48px;
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+    }
+    .vw-werkwijze p { margin: 0 0 12px; }
+    .vw-werkwijze p:last-child { margin: 0; }
+    .vw-teller {
+      display: inline-flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .vw-teller-item {
+      text-align: center;
+    }
+    .vw-teller-getal {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #f59e0b;
+    }
+    .vw-teller-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.35);
+      margin-top: 2px;
+    }
+    .vw-footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="vw-header">
+    <a class="vw-terug" href="kosten.html">← Terug naar Kosten</a>
+    <h1 class="vw-title">Verantwoording<br>correcties</h1>
+    <p class="vw-intro">
+      Deze pagina legt verantwoording af over alle correcties die zijn doorgevoerd op
+      <a href="kosten.html" style="color:rgba(255,255,255,0.6);">informatieautonomie.nl/kosten.html</a>.
+      Per correctie: wat er stond, wat het nu zegt, en op welke primaire bron dat is gebaseerd.
+    </p>
+    <p class="vw-meta">Laatste revisie: juni 2026 — 15 correcties doorgevoerd na systematische bronnencheck</p>
+  </div>
+
+  <div class="vw-body">
+
+    <div class="vw-werkwijze">
+      <p><strong style="color:rgba(255,255,255,0.7);">Werkwijze.</strong> Elke claim op de kostenpagina is nagelopen op primaire bronnen: Kamerstukken, officiële jaarverslagen, rechterlijke uitspraken, rapporten van de Rekenkamer en AcICT, en eigen publicaties van de betrokken organisaties. Claims die alleen in de vakpers circuleerden zonder herleidbare primaire bron zijn als zodanig aangemerkt. Getallen zijn vervangen door de primair bevestigde waarde, of voorzien van een toelichting over de zekerheidsgraad.</p>
+      <p>De onderliggende dataset (67 geverifieerde bevindingen met bronvermelding) is opgeslagen in de IA-OS-onderzoeksdatabase.</p>
+      <div class="vw-teller">
+        <div class="vw-teller-item">
+          <div class="vw-teller-getal">15</div>
+          <div class="vw-teller-label">Correcties</div>
+        </div>
+        <div class="vw-teller-item">
+          <div class="vw-teller-getal">67</div>
+          <div class="vw-teller-label">Claims geverifieerd</div>
+        </div>
+        <div class="vw-teller-item">
+          <div class="vw-teller-getal">52</div>
+          <div class="vw-teller-label">Primair bevestigd</div>
+        </div>
+        <div class="vw-teller-item">
+          <div class="vw-teller-getal">15</div>
+          <div class="vw-teller-label">Niet verifieerbaar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTIE 1: FEITELIJKE FOUTEN -->
+    <div class="vw-sectie-titel">Feitelijke onjuistheden — gecorrigeerd</div>
+
+    <div class="vw-correctie type-fout">
+      <div class="vw-correctie-label label-fout">Fout — Toeslagenaffaire gedupeerden</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>26.000 gezinnen gedupeerd</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>~40.300 vastgesteld gedupeerden; meer dan 42.000 aangemeld</div>
+      </div>
+      <div class="vw-bron"><strong>Waarom.</strong> De 26.000 was de eerste deelgroep waarvoor de beoordelingstermijn afliep — niet het totale aantal gedupeerden. <strong>Bron:</strong> Kamerstuk 31066-1462, 19e Voortgangsrapportage kinderopvangtoeslagen, december 2024.</div>
+    </div>
+
+    <div class="vw-correctie type-fout">
+      <div class="vw-correctie-label label-fout">Fout — Magister eigenaar</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>Eigenaar Magister: Constellation Software (Canada)</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>Eigenaar Magister: Sanoma Learning (Finland, via Iddink Group). Eigenaar Somtoday: Constellation Software (Canada, via Topicus).</div>
+      </div>
+      <div class="vw-bron"><strong>Waarom.</strong> Sanoma Learning nam Iddink Group (moeder van Magister) definitief over in 2022. Geen aanwijzing dat Constellation Software betrokken is bij Magister. De verwisseling was waarschijnlijk door Topicus/Somtoday, dat wél Constellation is en in hetzelfde domein opereert. <strong>Bron:</strong> ACM-besluit Sanoma Learning/Iddink 2019; CBb-uitspraak 2022; magister.nl/over-ons.</div>
+    </div>
+
+    <div class="vw-correctie type-fout">
+      <div class="vw-correctie-label label-fout">Fout — OM-verlies GPS + KEI</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>€323 mln verloren aan mislukte projecten (GPS + KEI)</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>OM verloor €103 mln (GPS). KEI (€205 mln) is een verlies van de Rechtspraak, niet het OM — twee verschillende organisaties.</div>
+      </div>
+      <div class="vw-bron"><strong>Waarom.</strong> GPS was een OM-project. KEI was een programma van de Raad voor de Rechtspraak. De optelling combineerde ten onrechte twee organisaties. <strong>Bron:</strong> FD interne evaluatie 2013 (GPS); NOS Nieuwsuur 2018 + Rechtspraak Basisplan Reset Digitalisering (KEI).</div>
+    </div>
+
+    <div class="vw-correctie type-fout">
+      <div class="vw-correctie-label label-fout">Fout — Vitens klantenaantal</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>Vitens ~10 miljoen klanten</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>Vitens 5,8 miljoen klanten (2,8 miljoen aansluitingen)</div>
+      </div>
+      <div class="vw-bron"><strong>Waarom.</strong> 10 miljoen zou circa 60% van de hele Nederlandse bevolking zijn. Vitens bedient vijf provincies. <strong>Bron:</strong> Vitens jaarverslag 2024; Vewin sectorcijfers.</div>
+    </div>
+
+    <div class="vw-correctie type-fout">
+      <div class="vw-correctie-label label-fout">Fout — Flyvbjerg-stelling verkeerd geciteerd</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>Publieke ICT-projecten presteren gemiddeld 2× slechter dan private op kostenoverschrijdingen</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>IT-projecten hebben 200% meer extreme kostenoverschrijdingen ('black swans') dan grote bouwprojecten; 1 op 6 IT-projecten loopt gemiddeld 200% over budget</div>
+      </div>
+      <div class="vw-bron"><strong>Waarom.</strong> Het HBR-artikel zegt expliciet dat er <em>weinig verschil</em> is tussen publieke en private IT-projecten. De stelling gaat over de dikke staart van de verdeling (uitschieters), niet over het gemiddelde, en vergelijkt IT met grote bouwprojecten, niet publiek met privaat. <strong>Bron:</strong> Flyvbjerg &amp; Budzier, "Why Your IT Project May Be Riskier Than You Think", HBR september 2011.</div>
+    </div>
+
+    <!-- SECTIE 2: VEROUDERDE GETALLEN -->
+    <div class="vw-sectie-titel">Verouderde getallen — bijgewerkt</div>
+
+    <div class="vw-correctie type-update">
+      <div class="vw-correctie-label label-update">Update — DigiD authenticaties</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>~500 miljoen authenticaties per jaar</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>~645 miljoen authenticaties (2025)</div>
+      </div>
+      <div class="vw-bron"><strong>Bron:</strong> Logius.nl, "DigiD-gebruik groeit naar 645 miljoen inlogacties", 11 juni 2026.</div>
+    </div>
+
+    <div class="vw-correctie type-update">
+      <div class="vw-correctie-label label-update">Update — APG deelnemers en vermogen</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>4,8 miljoen deelnemers; €576 miljard vermogen</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>4,6 miljoen deelnemers; ~€616 miljard vermogen (eind december 2024)</div>
+      </div>
+      <div class="vw-bron"><strong>Bron:</strong> APG.nl asset management pagina, letterlijk citaat: "At the end of December 2024, the assets we manage […] represented a value of approximately 616 billion euros."</div>
+    </div>
+
+    <div class="vw-correctie type-update">
+      <div class="vw-correctie-label label-update">Update — PFZW vermogen</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>~€240 miljard</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>€259 miljard (PFZW, eind 2024)</div>
+      </div>
+      <div class="vw-bron"><strong>Bron:</strong> PGGM Jaaroverzicht 2024; PFZW bericht beleggingen 2024 (rendement 8%).</div>
+    </div>
+
+    <div class="vw-correctie type-update">
+      <div class="vw-correctie-label label-update">Update — KB e-Depot omvang</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>40+ miljoen born-digital publicaties</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>~60 miljoen digitale publicaties</div>
+      </div>
+      <div class="vw-bron"><strong>Bron:</strong> KB projectpagina "Nieuw e-depot". Het eerdere getal van 40 miljoen is afkomstig uit een jubileumartikel uit december 2022 en inmiddels achterhaald.</div>
+    </div>
+
+    <div class="vw-correctie type-update">
+      <div class="vw-correctie-label label-update">Update — Rechtspraak KEI bedrag</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>€200–250 miljoen afgeschreven</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>€205 miljoen (per 1 januari 2018, primair bevestigd)</div>
+      </div>
+      <div class="vw-bron"><strong>Bron:</strong> NOS Nieuwsuur 2018; Rechtspraak Basisplan Reset Digitalisering. De bovengrens van €250 mln is niet aangetroffen in primaire bronnen.</div>
+    </div>
+
+    <!-- SECTIE 3: NUANCERINGEN -->
+    <div class="vw-sectie-titel">Nuanceringen — context toegevoegd</div>
+
+    <div class="vw-correctie type-nuance">
+      <div class="vw-correctie-label label-nuance">Nuance — COBOL-klif percentages</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>80% van COBOL-programmeurs gaat met pensioen binnen 5 jaar. Gemiddelde leeftijd: 62 jaar.</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>Ernstige vergrijzing COBOL-kennis (sector-schatting; niet primair bevestigd in overheidsdocumenten)</div>
+      </div>
+      <div class="vw-bron"><strong>Waarom.</strong> De percentages komen van een COBOL-docent (HoGent) en een COBOL-opleider (Quuks), geciteerd in een artikelencyclus van januari 2024. Geen Kamerbrief of AcICT-rapport bevestigt deze getallen. De urgentie zelf is wél ambtelijk erkend. <strong>Bron:</strong> Kamerbrief ICT Belastingdienst feb 2023; Woo-besluit COBOL-software nov 2024.</div>
+    </div>
+
+    <div class="vw-correctie type-nuance">
+      <div class="vw-correctie-label label-nuance">Nuance — DUO €148 mln/jaar timing</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>Impliciet gekoppeld aan het DAB-project en recente besluitvorming</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>€148 mln/jaar besloten bij Prinsjesdag 2019 (rijksbegroting OCW 2020) — voor het hele DUO ICT-landschap, niet specifiek voor DAB</div>
+      </div>
+      <div class="vw-bron"><strong>Bron:</strong> Computable 17 september 2019; rijksbegroting OCW 2020.</div>
+    </div>
+
+    <div class="vw-correctie type-nuance">
+      <div class="vw-correctie-label label-nuance">Nuance — Politie 1.200+ systemen</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>Gepresenteerd als actuele situatie</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>Historisch getal bij oprichting Nationale Politie (2012-2013); na het Aanvalsprogramma Informatievoorziening Politie significant teruggebracht</div>
+      </div>
+      <div class="vw-bron"><strong>Bron:</strong> Computable, uitspraak CIO Dick Heerschop bij oprichting; Rekenkamer ICT Politie 2016.</div>
+    </div>
+
+    <div class="vw-correctie type-nuance">
+      <div class="vw-correctie-label label-nuance">Nuance — Van Brug Software marktaandeel</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>&gt;50% van alle Nederlandse notarissen</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>~34-40% (ruim 300 van ~871 kantoren; eigen opgave Van Brug)</div>
+      </div>
+      <div class="vw-bron"><strong>Waarom.</strong> Van Brug zegt zelf "ruim 300 notariskantoren". Bij ~871 kantoren totaal is dat circa 34-40%. Een primaire bron die >50% bevestigt is niet gevonden. Het eigenaarschap via TSS → Constellation Software is wél primair bevestigd. <strong>Bron:</strong> vanbrug.nl; KNB-data.</div>
+    </div>
+
+    <div class="vw-correctie type-nuance">
+      <div class="vw-correctie-label label-nuance">Nuance — McKinsey oorzaak productiviteitsverlies</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>Kenniswerkers verspillen 20% van werktijd door gefragmenteerde informatiesystemen</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>Kenniswerkers besteden bijna 20% van hun werkweek aan zoeken naar interne informatie en het opsporen van de juiste collega</div>
+      </div>
+      <div class="vw-bron"><strong>Waarom.</strong> Het McKinsey-rapport beschrijft een gedragsprobleem (zoekgedrag), niet systeemfragmentatie als structurele oorzaak. De framing als "gefragmenteerde systemen" is een latere interpretatie die in het originele rapport niet zo staat. <strong>Bron:</strong> McKinsey Global Institute, "The social economy: Unlocking value and productivity through social technologies", juli 2012.</div>
+    </div>
+
+    <div class="vw-correctie type-nuance">
+      <div class="vw-correctie-label label-nuance">Nuance — CoronIT permanent</div>
+      <div class="vw-was-wordt">
+        <div class="vw-was"><div class="vw-was-label">Was</div>Via noodcontract pandemie verkregen, daarna permanent geworden</div>
+        <div class="vw-wordt"><div class="vw-wordt-label">Nu</div>Via noodcontract verkregen tijdens de pandemie. Structurele doorloop na 2022 is niet publiek bevestigd.</div>
+      </div>
+      <div class="vw-bron"><strong>Waarom.</strong> Topicus als ontwikkelaar en de noodaanbesteding zijn primair bevestigd. Of het contract daarna voor alle 25 regio's structureel is voortgezet, is niet gevonden in publieke primaire bronnen. Financiering pandemische paraatheid loopt af naar nul in 2029. <strong>Bron:</strong> Rijksoverheid opdracht GGD-GHOR juni 2021; Topicus persbericht.</div>
+    </div>
+
+    <div class="vw-footer">
+      Vragen over de bronnen of de verificatiemethode? <a href="https://martijnaslander.international" style="color:rgba(255,255,255,0.5);">Neem contact op →</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
